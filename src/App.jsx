@@ -13,12 +13,11 @@ class App extends React.Component {
     };
   }
 
-  onChangeHandle(event) {
-    console.log(event);
-    //this.setState({searchText: event.target.value});
+  onChangeHandle = e => {
+    this.setState({searchText: e});
   }
 
-  onSubmit(event) {
+  onSubmit = (event) => {
     event.preventDefault();
     const {searchText} = this.state;
     const url = `https://api.github.com/search/users?q=${searchText}`;
@@ -31,7 +30,9 @@ class App extends React.Component {
     return (
       <div>
         <Search onChangeHandle={this.onChangeHandle} onSubmit={this.onSubmit} />
-        <ContactsList users={this.state.users}/>
+        <ul>
+          {this.state.users.map(user => <ContactsList key={user.id} user={user} />)}
+        </ul>
       </div>
     );
   }
