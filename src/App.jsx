@@ -1,6 +1,9 @@
 import React from 'react';
 import './App.scss';
 
+import ContactsList from './components/ContactsList/ContactsList.jsx';
+import Search from './components/Search/Search.jsx';
+
 class App extends React.Component {
   constructor() {
     super();
@@ -11,7 +14,8 @@ class App extends React.Component {
   }
 
   onChangeHandle(event) {
-    this.setState({searchText: event.target.value});
+    console.log(event);
+    //this.setState({searchText: event.target.value});
   }
 
   onSubmit(event) {
@@ -25,7 +29,10 @@ class App extends React.Component {
 
   render() {
     return (
-      <div> NAS</div>
+      <div>
+        <Search onChangeHandle={this.onChangeHandle} onSubmit={this.onSubmit} />
+        <ContactsList users={this.state.users}/>
+      </div>
     );
   }
 }
