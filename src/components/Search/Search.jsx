@@ -1,28 +1,23 @@
 import React from 'react';
+import './Search.scss';
 
 class Search extends React.Component {
-    constructor(props) {
-        super(props);
-        this.state = {searchingText: ''};
-    }
-
+    
     handleChange = e => {
         let searchingText = e.target.value;
-        this.setState({searchingText: searchingText});
-        if (searchingText.length > 2) {
-            this.props.onChangeHandle(searchingText);
-        }
+        this.props.onChangeHandle(searchingText);  
     } 
 
     render() {
        return (
-         <form onSubmit={event => this.props.onSubmit(event)}>
+         <form className="search-form" onSubmit={e => this.props.onSubmit(e)}>
             <label htmlFor="searchText">Search by user name</label>
             <input
                 type="text"
                 id="searchText"
+                placeholder="Search..."
                 onChange={this.handleChange}
-                value={this.state.searchText}/>
+                value={this.searchText}/>
         </form>
        );
     }
